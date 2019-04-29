@@ -30,115 +30,243 @@ body {
 	
 }
 
+
 .main_wrapper{
-	width:1000px;
-	height:auto;
-	margin:auto;
+width:1000px;
+height:auto;
+margin:auto;
 }
 .header_wrapper{
-	width:1000px;
-	height:100px;
-	margin:auto;
+width:1000px;
+height:100px;
+margin:auto;
 }
-#logo{width:450px;height:100px;}
+
+#logo{
+width:450px;
+height:100px;
+}
 
 .content_wrapper{
-	width:1000px;
-	margin:auto;
+width:1000px;
+margin:auto;
 }
 
 .menubar{
-	width:1000px;
-	height:50px;
-	color:white;
+width:1000px;
+height:50px;
+color:white;
 }
 
 #content_area{
-	width:800px;
-	float:right;
+width:800px;
+float:right;
 }
 
 #products_box{
-	
-	width:780px;
-	text-align:center;
-	margin-left:30px;
-	margin-bottom:10px;
+width:780px;
+text-align:center;
+margin-left:30px;
+margin-bottom:10px;
 	}
 #single_product{
-		float:left; 
-		margin-left:20px; 
-		padding:10px;
+float:left; 
+margin-left:20px; 
+padding:10px;
 }
 
 #sidebar{
-	width:200px;
-	float:left;
-	}
+width:200px;
+float:left;
+}
 
 #footer{
-	width:1000px;
-	height:100px;
-	clear:both;
-	background:gray;
-	}
+width:1000px;
+height:100px;
+clear:both;
+}
 
 #menu{
-	padding:0;
-	margin:0;
-	line-height:40px;
-	float:left;
-	}
+padding:0;
+margin:0;
+line-height:40px;
+float:left;
+}
 #menu li{
-	list-style:none;
-	display:inline;
-	}
+list-style:none;
+display:inline;
+}
 
 #menu a{
-	text-decoration:none;
-	color:black;
-	padding:8px;
-	margin:5px;
-	font-size:18px;
-	font-style:blond;
-	}
+text-decoration:none;
+color:black;
+padding:8px;
+margin:5px;
+font-size:18px;
+font-style:blond;
+}
 #menu a:hover{
-	color:skyblue;
-	font-size:20px;}
+color:red;
+font-size:20px;
+}
 
 #form{
-	float:right;
-	padding-right:8px;
-	line-height:40px;
+float:right;
+padding-right:8px;
+line-height:40px;
 }
 
 #sidebar_title{
-	color:black;
-	font-size:20px;
-	text-align:center;
+color:black;
+font-size:20px;
+text-align:center;
 }
 
 
 #cats{
-	text-align:center;
-	
+text-align:center;
 }
-#cats li{
-	list-style:none;
-	margin:5px;
 	
+#cats li{
+list-style:none;
+margin:5px;
 }
 
 #cats a{
-	padding:8px;
-	margin:5px;
-	font-size:20px;
-	color:black;
-	text-decoration:none;
+padding:8px;
+margin:5px;
+font-size:20px;
+color:black;
+text-decoration:none;
 }
 
 #cats a:hover{
-	color:skyblue;
-	font-size:20px;
-	}
+color:skyblue;
+font-size:20px;
+}
+
+#shopping_cart{width:800px; height:50px;}
+
+$main-color: #6394F8;
+$light-text: #ABB0BE;
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+
+.lighter-text {
+  color: #ABB0BE;
+}
+
+.main-color-text {
+  color: $main-color;
+}
+
+nav {
+  padding: 20px 0 40px 0;
+  background: #F8F8F8;
+  font-size: 16px;
+  
+  .navbar-left {
+    float: left;
+  }
+  
+  .navbar-right {
+    float: right;
+  }
+  ul {
+    
+    li {
+      display: inline;
+      padding-left: 20px;
+      a {
+        color: #777777;
+        text-decoration: none;
+        
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  margin: auto;
+  width: 80%;
+}
+
+.badge {
+    background-color: #6394F8;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.shopping-cart {
+  margin: 20px 0;
+  float: right;
+  background: white;
+  width: 320px;
+  position: relative;
+  border-radius: 3px;
+  padding: 20px;
+  
+  
+  .shopping-cart-header {
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 15px;
+    
+    .shopping-cart-total {
+      float: right;
+    }
+  }
+  
+
+   
+}
+
+
+
+.cart-icon {
+  color: #515783;
+  font-size: 24px;
+  margin-right: 7px;
+  float: left;
+}
+
+.button {
+  background: $main-color;
+  color:white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: 25px 0 15px 0;
+  
+  &:hover {
+    background: lighten($main-color, 3%);
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
 

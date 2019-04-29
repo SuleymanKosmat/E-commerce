@@ -12,7 +12,7 @@ function getCats()
 		$cat_id=$row_cats['cat_id'];
 		$cat_title=$row_cats['cat_title'];
 		
-		echo "<li><a href='#'> $cat_title</a> </li>";
+		echo "<li ><a href='#'> $cat_title</a> </li>";
 	}
 	
 }
@@ -48,15 +48,14 @@ function getPro(){
 				<div id='single_product'>
 					<h3>$pro_title</h3>
 					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
-					<p> <b> $pro_price </b> </p>
+					<p><b> $pro_price TL </b></p>
+					<a href='details.php?pro_id=$pro_id' style='float:left;'> Detaylar </a>
+					<a href='index.php?pro_id=$pro_id'><button style='float:right'>Sepete Ekle</button> </a>
 				</div>
-		";
-		
+				
+				";
+		}
 	}
-	
-	
-	
-}
 
 
 
