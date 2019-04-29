@@ -63,7 +63,11 @@ include("functions/functions.php");
 			</div>
 			<!-- sidebar ends here-->
 		
-			<div id="content_area">this is content area</div>
+			<div id="content_area">
+				<div id="products_box">
+					<?php getPro(); ?>
+				</div>
+			</div>
 		</div>
 		<!-- Content Wrapper ends here-->
 		
