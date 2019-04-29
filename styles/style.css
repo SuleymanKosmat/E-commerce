@@ -120,11 +120,13 @@ line-height:40px;
 color:black;
 font-size:20px;
 text-align:center;
+
 }
 
 
 #cats{
 text-align:center;
+
 }
 	
 #cats li{
@@ -167,34 +169,6 @@ $light-text: #ABB0BE;
   color: $main-color;
 }
 
-nav {
-  padding: 20px 0 40px 0;
-  background: #F8F8F8;
-  font-size: 16px;
-  
-  .navbar-left {
-    float: left;
-  }
-  
-  .navbar-right {
-    float: right;
-  }
-  ul {
-    
-    li {
-      display: inline;
-      padding-left: 20px;
-      a {
-        color: #777777;
-        text-decoration: none;
-        
-        &:hover {
-          color: black;
-        }
-      }
-    }
-  }
-}
 
 .container {
   margin: auto;
@@ -248,14 +222,14 @@ nav {
 
 .button {
   background: $main-color;
-  color:white;
+  color:green;
   text-align: center;
   padding: 12px;
   text-decoration: none;
   display: block;
   border-radius: 3px;
   font-size: 16px;
-  margin: 25px 0 15px 0;
+
   
   &:hover {
     background: lighten($main-color, 3%);

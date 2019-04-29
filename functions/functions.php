@@ -50,7 +50,7 @@ function getPro(){
 					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
 					<p><b> $pro_price TL </b></p>
 					<a href='details.php?pro_id=$pro_id' style='float:left;'> Detaylar </a>
-					<a href='index.php?pro_id=$pro_id'><button style='float:right'>Sepete Ekle</button> </a>
+					<a href='index.php?pro_id=$pro_id'><button class='button' style='float:right'>Sepete Ekle</button> </a>
 				</div>
 				
 				";
