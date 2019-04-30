@@ -29,6 +29,7 @@ include("functions/functions.php");
 				<li> <a href="cart.php">Shopping Cart</a> </li>
 				<li> <a href="#">Contact Us</a> </li>
 				
+				
 			</ul>
 				
 			
@@ -55,6 +56,7 @@ include("functions/functions.php");
 				
 				<ul id="cats">
 					<?php getCats(); ?>
+					
 				</ul>
 				
 				<div id="sidebar_title"> MARKA </div>
@@ -67,7 +69,7 @@ include("functions/functions.php");
 			<!-- sidebar ends here-->
 		
 			<div id="content_area">
-			
+			<?php cart(); ?>
 			
 				<!-- shopping cart begins here-->
 				<div id="shopping_cart">
