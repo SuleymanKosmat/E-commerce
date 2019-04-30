@@ -7,6 +7,7 @@ function getCats()
 	global $con;
 	$get_cats="select * from categories";
 	$run_cats=mysqli_query($con,$get_cats);
+	$count_cats=mysqli_num_rows($run_cats);
 	
 	while($row_cats=mysqli_fetch_array($run_cats)){
 		$cat_id=$row_cats['cat_id'];
@@ -16,7 +17,7 @@ function getCats()
 			
 			<li class='list-group-item d-flex justify-content-between align-items-center'>
 				<a href='index.php?cat=$cat_id'>$cat_title</a> 
-				<span class='badge badge-primary badge-pill' style='float:right;'>14</span>
+				<span class='badge badge-primary badge-pill' style='float:right;'>$count_cats</span>
 			</li>
 		";
 	}
@@ -27,6 +28,7 @@ function getBrands(){
 	global $con;
 	$get_brands="select * from brands";
 	$run_brands=mysqli_query($con,$get_brands);
+	$count_brands=mysqli_num_rows($run_brands);
 	while($row_brands=mysqli_fetch_array($run_brands)){
 		$brand_id=$row_brands['brand_id'];
 		$brand_title=$row_brands['brand_title'];
@@ -34,7 +36,7 @@ function getBrands(){
 		echo "
 			<li class='list-group-item d-flex justify-content-between align-items-center'>
 				<a href='index.php?brand=$brand_id'>$brand_title</a> 
-				<span class='badge badge-primary badge-pill' style='float:right;'>14</span>
+				<span class='badge badge-primary badge-pill' style='float:right;'>$count_brands</span>
 			</li>
 		
 		";
@@ -90,7 +92,7 @@ function getCatPro(){
 	while($row_cat_pro =mysqli_fetch_array($run_cat_pro)){
 		$pro_id=$row_cat_pro['product_id'];
 		$pro_cat=$row_cat_pro['product_cat'];
-		$pro_bran=$row_cat_pro['product_brand'];
+		$pro_brand=$row_cat_pro['product_brand'];
 		$pro_title=$row_cat_pro['product_title'];
 		$pro_price=$row_cat_pro['product_price'];
 		$pro_image=$row_cat_pro['product_image'];
@@ -111,4 +113,44 @@ function getCatPro(){
  }
 }
 	
+	
+	
+	
+function getBrandPro(){
+	if(isset($_GET['brand'])){
+		$brand_id=$_GET['brand'];
+	global $con;
+	$get_brand_pro = "select * from products where product_brand=$brand_id";
+	$run_brand_pro= mysqli_query($con,$get_brand_pro);
+	$count_brands=mysqli_num_rows($run_brand_pro);
+
+	if($count_brands==0){
+		echo"
+		<h2>Stokta Ürün Bulunmamaktadır!</h2>
+		";
+		}
+	
+	while($row_brand_pro=mysqli_fetch_array($run_brand_pro)){
+		$pro_id=$row_brand_pro['product_id'];
+		$pro_cat=$row_brand_pro['product_cat'];
+		$pro_brand=$row_brand_pro['product_brand'];
+		$pro_title=$row_brand_pro['product_title'];
+		$pro_price=$row_brand_pro['product_price'];
+		$pro_image=$row_brand_pro['product_image'];
+		
+		echo "
+				<div id='single_product'>
+					<h3>$pro_title</h3>
+					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
+					<p><b> $pro_price TL </b></p>
+					<a href='details.php?pro_id=$pro_id' style='float:left;'> Detaylar </a>
+					<a href='index.php?pro_id=$pro_id'><button class='button' style='float:right'>Sepete Ekle</button> </a>
+				</div>
+				
+				";
+		
+		}
+		
+ }
+}
 ?>
