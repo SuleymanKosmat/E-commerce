@@ -103,7 +103,7 @@ include("functions/functions.php");
 							echo "
 								<div id='single_product'>
 									<h3>$pro_title</h3>
-									<img src='admin_area/product_images/$pro_image' width='400' height='300' />
+									<img src='admin_area/product_images/$pro_image' width='350' height='350' />
 									<p><b> $pro_price TL </b></p>
 									<p> $pro_desc</p>
 									<a href='index.php' style='float:left;'> Geri Git </a>

@@ -86,6 +86,8 @@ include("functions/functions.php");
 				
 				<div id="products_box">
 					<?php getPro(); ?>
+					<?php getCatPro(); ?>
+					
 				</div>
 			</div>
 		</div>
