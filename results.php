@@ -14,7 +14,7 @@ include("functions/functions.php");
 	
 	
 		<!-- Header starts here-->
-			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
 		  <div class="carousel-inner">
 			<div class="carousel-item active">
 			  <img class="d-block w-100" src="images/img4.jpg" alt="First slide" style="height:200px; width:1000px;">
@@ -26,7 +26,7 @@ include("functions/functions.php");
 		
 		
 		<!-- Navagation Bar starts here-->
-	<div>
+		<div>
 			<!-- Search Box ends here-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -63,6 +63,7 @@ include("functions/functions.php");
 				
 				<ul id="cats">
 					<?php getCats(); ?>
+					
 				</ul>
 				
 				<div id="sidebar_title"> MARKA </div>
@@ -75,25 +76,23 @@ include("functions/functions.php");
 			<!-- sidebar ends here-->
 		
 			<div class="container-fluid">
-			
-			
+			<?php cart(); ?>
 				<!-- shopping cart begins here-->
 				<div style="height:40px;">
 					<span style="float:right">
 					<li>
-					<span class="lighter-text">Toplam Ücret:</span>
-					<a href="#" id="cart">
+					<span class="lighter-text">Toplam Ücret: <?php total_price(); ?> TL </span>
+					<a href="cart.php" id="cart">
 					<i class="glyphicon glyphicon-shopping-cart"></i>
 					Sepet 
-					<span class="badge">3</span></a>
+					<span class="badge"><?php total_items(); ?></span></a>
 					</li>
 					</span>
 				</div>
 				<!-- shopping cart ends here-->
 				
 				
-				<div>
-					
+				<div class="row">
 					<?php 
 					if(isset($_GET['search'])){
 						$search_query=$_GET['user_query'];
@@ -118,6 +117,7 @@ include("functions/functions.php");
 										<div >
 											<h5 class='card-title'>$pro_title</h5>
 											<img src='admin_area/product_images/$pro_image' style='height:275px; width:350px;' class='card-img-top' alt='...' >
+											<p>$pro_price TL</p>
 										</div>
 										<div>
 											<a href='details.php?pro_id=$pro_id' class='btn btn-primary' style='float:left;' >Detaylar</a>

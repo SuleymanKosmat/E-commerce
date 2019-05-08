@@ -93,9 +93,50 @@ include("functions/functions.php");
 				
 				
 				<div class="row">
-					<?php getPro(); ?>
-					<?php getCatPro(); ?>
-					<?php getBrandPro(); ?>
+				<form action="" method="post" enctype="multipart/form-data">
+					<table align="center" width="700" bgcolor="skyblue">
+				
+						<tr align="center">
+						<th>remove</th>
+						<th>product(s)</th>
+						<th>quantity</th>
+						<th>total price</th>
+						</tr>
+						<?php
+						$total=0;
+						global $con;
+						$ip=getIp();
+						$sel_price="select *from cart where ip_add='$ip'";
+						$run_price=mysqli_query($con,$sel_price);
+						while($p_price=mysqli_fetch_array($run_price)){
+									
+							$pro_id= $p_price['p_id'];
+							$pro_price="select * from products where product_id='$pro_id'";
+							$run_pro_price=mysqli_query($con,$pro_price);
+								while($pp_price=mysqli_fetch_array($run_pro_price)){
+									$product_price= array($pp_price['product_price']);
+									$product_title= $pp_price['product_title'];
+									$product_image= $pp_price['product_image'];
+									$single_price= $pp_price['product_price'];
+									$values=array_sum($product_price);
+									$total += $values;
+									?>	
+									<tr align="center">
+										<td><input type="checkbox" name="remove[]"/></td>
+										<td><?php echo $product_title; ?> <br>
+										<img src="admin_area/product_images/<?php echo $product_image;?>" width="60" height="60"/>
+										</td>
+										<td><input type="text" size="4" name="qty"/></td>
+										<td><?php echo $single_price; ?></td>
+									</tr>
+									
+								<?php } } ?>
+								<tr align="right">
+									<td colspan="5">Total:</td>
+									<td><?php echo $total; ?> TL</td>
+								</tr>
+					</table>
+				</form>
 					
 				</div>
 			</div>

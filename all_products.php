@@ -82,11 +82,11 @@ include("functions/functions.php");
 				<div style="height:40px;">
 					<span style="float:right">
 					<li>
-					<span class="lighter-text">Toplam Ücret:</span>
-					<a href="#" id="cart">
+					<span class="lighter-text">Toplam Ücret: <?php total_price(); ?> TL </span>
+					<a href="cart.php" id="cart">
 					<i class="glyphicon glyphicon-shopping-cart"></i>
 					Sepet 
-					<span class="badge">3</span></a>
+					<span class="badge"><?php total_items(); ?></span></a>
 					</li>
 					</span>
 				</div>
@@ -114,6 +114,7 @@ include("functions/functions.php");
 										<div >
 											<h5 class='card-title'>$pro_title</h5>
 											<img src='admin_area/product_images/$pro_image' style='height:275px; width:350px;' class='card-img-top' alt='...' >
+											<p>$pro_price TL</p>
 										</div>
 										<div>
 											<a href='details.php?pro_id=$pro_id' class='btn btn-primary' style='float:left;' >Detaylar</a>
