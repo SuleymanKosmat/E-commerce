@@ -38,7 +38,7 @@ function cart(){
 		
 	}
 }
-
+// total items for cart
 function total_items(){
 	if(isset($_GET['add_cart'])){
 		global $con;
@@ -56,6 +56,29 @@ function total_items(){
 		}
 		
 	echo $count_items;
+}
+
+// total price for cart
+function total_price(){
+	    $total=0;
+		global $con;
+		$ip=getIp();
+		$sel_price="select *from cart where ip_add='$ip'";
+		$run_price=mysqli_query($con,$sel_price);
+		while($p_price=mysqli_fetch_array($run_price)){
+			
+			$pro_id= $p_price['p_id'];
+			$pro_price="select * from products where product_id='$pro_id'";
+			$run_pro_price=mysqli_query($con,$pro_price);
+			while($pp_price=mysqli_fetch_array($run_pro_price)){
+				$product_price= array($pp_price['product_price']);
+				$values=array_sum($product_price);
+				$total += $values;
+			}
+		}
+		
+		
+	echo $total;
 }
 
 //Getting the categories

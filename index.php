@@ -81,7 +81,7 @@ include("functions/functions.php");
 				<div style="height:40px;">
 					<span style="float:right">
 					<li>
-					<span class="lighter-text">Toplam Ücret:</span>
+					<span class="lighter-text">Toplam Ücret: <?php total_price(); ?> TL </span>
 					<a href="#" id="cart">
 					<i class="glyphicon glyphicon-shopping-cart"></i>
 					Sepet 
