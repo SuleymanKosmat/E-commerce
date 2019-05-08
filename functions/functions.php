@@ -2,6 +2,10 @@
 
 $con =mysqli_connect("localhost","root","","ecommerce");
 
+if(mysqli_connect_errno()){
+	echo"Db Bağlantı Hatası!!!" .mysqli_connect_error();
+}
+
 function getIp() {
     $ip = $_SERVER['REMOTE_ADDR'];
  
@@ -14,6 +18,7 @@ function getIp() {
     return $ip;
 }
 
+//adding cart
 function cart(){
 	if(isset($_GET['add_cart'])){
 		global $con;
@@ -21,17 +26,36 @@ function cart(){
 		$pro_id = $_GET['add_cart'];
 		$check_pro="select *from cart where ip_add='$ip' AND p_id='$pro_id'";
 		$run_check = mysqli_query($con,$check_pro);
-		if(mysqli_num_rows($run_check>0)){
+		if(mysqli_num_rows($run_check)>0){
 			echo"";
 			
 		}
-	else{
-		$insert_pro="insert into cart(p_id,ip_add) values ('$pro_id','$ip')";
+		else{
+		$insert_pro = "insert into cart(p_id,ip_add) values ('$pro_id','$ip')";
 		$run_pro= mysqli_query($con,$insert_pro);
 		echo"<script>window.open('index.php','_self')</script>";
-	}
+		}
 		
 	}
+}
+
+function total_items(){
+	if(isset($_GET['add_cart'])){
+		global $con;
+		$ip=getIp();
+		$get_items="select *from cart where ip_add='$ip'";
+		$run_items=mysqli_query($con,$get_items);
+		$count_items=mysqli_num_rows($run_items);
+		}
+		else{
+		global $con;
+		$ip=getIp();
+		$get_items="select *from cart where ip_add='$ip'";
+		$run_items=mysqli_query($con,$get_items);
+		$count_items=mysqli_num_rows($run_items);
+		}
+		
+	echo $count_items;
 }
 
 //Getting the categories
@@ -48,9 +72,8 @@ function getCats()
 		
 		echo "
 			
-			<li class='list-group-item d-flex justify-content-between align-items-center'>
+			<li class='list-group-item'>
 				<a href='index.php?cat=$cat_id'>$cat_title</a> 
-				<span class='badge badge-primary badge-pill' style='float:right;'>$count_cats</span>
 			</li>
 		";
 	}
@@ -67,9 +90,8 @@ function getBrands(){
 		$brand_title=$row_brands['brand_title'];
 		
 		echo "
-			<li class='list-group-item d-flex justify-content-between align-items-center'>
+			<li class='list-group-item'>
 				<a href='index.php?brand=$brand_id'>$brand_title</a> 
-				<span class='badge badge-primary badge-pill' style='float:right;'>$count_brands</span>
 			</li>
 		
 		";
@@ -94,14 +116,23 @@ function getPro(){
 		$pro_image=$row_pro['product_image'];
 		
 		echo "
-				<div id='single_product'>
-					<h3>$pro_title</h3>
-					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
-					<p><b> $pro_price TL </b></p>
-					<a href='details.php?pro_id=$pro_id' style='float:left;'> Detaylar </a>
-					<a href='index.php?add_cart=$pro_id'><button class='button' style='float:right'>Sepete Ekle</button> </a>
+			<div class='col-sm-6'>
+				<div class='card'>
+					<div class='card-body'>
+						
+						<div >
+						<h5 class='card-title'>$pro_title</h5>
+						<img src='admin_area/product_images/$pro_image' style='height:275px; width:350px;' class='card-img-top' alt='...' >
+						<p>$pro_price TL</p>
+						</div>
+						<div>
+						<a href='details.php?pro_id=$pro_id' class='btn btn-primary' style='float:left;' >Detaylar</a>
+						<a href='index.php?add_cart=$pro_id' class='btn btn-primary' style='float:right;' >Sepete Ekle</a>
+						</div>
+						
+					</div>
 				</div>
-				
+			</div>	
 				";
 		}
 		}
@@ -136,7 +167,7 @@ function getCatPro(){
 					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
 					<p><b> $pro_price TL </b></p>
 					<a href='details.php?pro_id=$pro_id' style='float:left;'> Detaylar </a>
-					<a href='index.php?add_cart=$pro_id'><button class='button' style='float:right'>Sepete Ekle</button> </a>
+					<a href='index.php?add_cart=$pro_id'><button class='button' style='float:right;'>Sepete Ekle</button> </a>
 				</div>
 				
 				";
@@ -177,7 +208,7 @@ function getBrandPro(){
 					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
 					<p><b> $pro_price TL </b></p>
 					<a href='details.php?pro_id=$pro_id' style='float:left;'> Detaylar </a>
-					<a href='index.php?add_cart=$pro_id'><button class='button' style='float:right'>Sepete Ekle</button> </a>
+					<a href='index.php?add_cart=$pro_id'><button class='button' style='float:right;'>Sepete Ekle</button> </a>
 				</div>
 				
 				";

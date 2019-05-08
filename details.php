@@ -6,40 +6,48 @@ include("functions/functions.php");
 	<head>
 		<title> My online Shop</title>
 		<link rel="stylesheet" href="styles/style.css" media="all" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 <body>
     <!-- Main Container starts here-->
-	<div class="main_wrapper">
+	<div class="container-fluid">
 	
 	
 		<!-- Header starts here-->
-		<div class="header_wrapper">
-			<img id="logo" src="images/Shopping.jpg"/>
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner">
+			<div class="carousel-item active">
+			  <img class="d-block w-100" src="images/img4.jpg" alt="First slide" style="height:200px; width:1000px;">
+			</div>
+			
+			</div>
 		</div>
 		<!-- Header starts here-->
 		
 		
 		<!-- Navagation Bar starts here-->
-		<div class="menubar">
-			<ul id ="menu">
-				<li> <a href="#">Home</a> </li>
-				<li> <a href="#">All Products</a> </li>
-				<li> <a href="#">My Account</a> </li>
-				<li> <a href="#">Sign Up</a> </li>
-				<li> <a href="#">Shopping Cart</a> </li>
-				<li> <a href="#">Contact Us</a> </li>
-				
-			</ul>
-				
-			
-			
-			<!-- Search Box starts here-->
-			<div id="form">
-			<form method ="get" action="results.php" enctype="multipart/form-data">
-				<input type="text" name="user_query" />
-				<input type="submit" name="Search" value="Search" />
-			</div>
+		<div>
 			<!-- Search Box ends here-->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="index.php">ANASAYFA <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="all_products.php">Tüm Ürünler</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Hesabım</a>
+						</li>
+					</ul>
+					<form method ="get" action="results.php" enctype="multipart/form-data" class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="text" name="user_query" placeholder="Search" aria-label="Search">
+						<!--<input type="submit" name="Search" value="Search" /> -->
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search" value="Search">Search</button>
+					</form>
+				</div>
+			</nav>
 			
 		</div>
 		<!-- Navagation Bar ends here-->
@@ -47,14 +55,15 @@ include("functions/functions.php");
 		
 		
 		<!-- Content Wrapper starts here-->
-		<div class="content_wrapper">
+		<div class="container-fluid">
 		
 			<!-- sidebar starts here-->
-			<div id="sidebar">
+			<div class="container-fluid" id="sidebar">
 				<div id="sidebar_title"> KATEGORİ </div>
 				
 				<ul id="cats">
 					<?php getCats(); ?>
+					
 				</ul>
 				
 				<div id="sidebar_title"> MARKA </div>
@@ -66,16 +75,15 @@ include("functions/functions.php");
 			</div>
 			<!-- sidebar ends here-->
 		
-			<div id="content_area">
-			
-			
+			<div class="container-fluid">
+			<?php cart(); ?>
 				<!-- shopping cart begins here-->
-				<div id="shopping_cart">
+				<div style="height:40px;">
 					<span style="float:right">
 					<li>
 					<span class="lighter-text">Toplam Ücret:</span>
 					<a href="#" id="cart">
-					<i class="fa fa-shopping-cart "></i>
+					<i class="glyphicon glyphicon-shopping-cart"></i>
 					Sepet 
 					<span class="badge">3</span></a>
 					</li>
@@ -84,7 +92,7 @@ include("functions/functions.php");
 				<!-- shopping cart ends here-->
 				
 				
-				<div id="products_box">
+				<div class="row">
 					<?php 
 					if(isset($_GET['pro_id'])){
 						
@@ -101,19 +109,22 @@ include("functions/functions.php");
 						$pro_desc=$row_pro['product_desc'];
 						
 							echo "
-								<div id='single_product'>
-									<h3>$pro_title</h3>
-									<img src='admin_area/product_images/$pro_image' width='350' height='350' />
-									<p><b> $pro_price TL </b></p>
-									<p> $pro_desc</p>
-									<a href='index.php' style='float:left;'> Geri Git </a>
-									<a href='index.php?pro_id=$pro_id'><button class='button' style='float:right'>Sepete Ekle</button> </a>
+								
+								<div class='card' style='width: 26rem;'>
+									<img src='admin_area/product_images/$pro_image' class='card-img-top' alt='...' style='height:300px; width:400px;'>
+										<div class='card-body'>
+											<h5 class='card-title'>$pro_title</h5>
+											<p class='card-text'>$pro_desc</p>
+											<a href='index.php' class='btn btn-primary' style='float:left;'>Geri Git</a>
+											<a href='index.php?pro_id=$pro_id' class='btn btn-primary' style='float:right'>Sepete Ekle</a>
+										</div>
 								</div>
 								
 						    ";
 						}
 					}
 					?>
+					
 				</div>
 			</div>
 		</div>
@@ -129,5 +140,8 @@ include("functions/functions.php");
 
 </div>
 <!-- Main Container ends here-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>	
