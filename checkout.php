@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <?php
-include("functions/functions.php");
 session_start();
+include("functions/functions.php");
 ?>
 <html>
 	<head>
@@ -81,6 +81,14 @@ session_start();
 				<!-- shopping cart begins here-->
 				<div style="height:40px;">
 					<span style="float:right">
+					<?php 
+					if(isset($_SESSION['customer_email'])){
+					echo "<b>Welcome:</b>" . $_SESSION['customer_email'] . "<b style='color:yellow;'>Your</b>" ;
+					}
+					else {
+					echo "<b>Welcome Guest:</b>";
+					}
+					?>
 					<li>
 					<span class="lighter-text">Toplam Ücret: <?php total_price(); ?> TL </span>
 					<a href="cart.php" id="cart">
@@ -92,111 +100,19 @@ session_start();
 				</div>
 				<!-- shopping cart ends here-->
 				
-				
 				<div class="row">
-				<form action="" method="post" enctype="multipart/form-data">
-					<table align="center" width="700" bgcolor="skyblue">
-				
-						<tr align="center">
-						<th>remove</th>
-						<th>product(s)</th>
-						<th>quantity</th>
-						<th>total price</th>
-						</tr>
-						<?php
-						$total=0;
-						global $con;
-						$ip=getIp();
-						$sel_price="select *from cart where ip_add='$ip'";
-						$run_price=mysqli_query($con,$sel_price);
-						while($p_price=mysqli_fetch_array($run_price)){
-									
-							$pro_id= $p_price['p_id'];
-							$pro_price="select * from products inner join cart on products.product_id=cart.p_id and products.product_id='$pro_id'";
-							$run_pro_price=mysqli_query($con,$pro_price);
-								while($pp_price=mysqli_fetch_array($run_pro_price)){
-									$product_price= array($pp_price['product_price']);
-									$product_title= $pp_price['product_title'];
-									$product_image= $pp_price['product_image'];
-									$single_price= $pp_price['product_price'];
-									$product_qty= $pp_price['qty'];
-									$values=array_sum($product_price);
-									$total += $values;
-									?>	
-									<tr align="center">
-										<td><input type="checkbox" name="remove[]" value="<?php echo $pro_id;?>"/></td>
-										<td><?php echo $product_title; ?> <br>
-										<img src="admin_area/product_images/<?php echo $product_image;?>" width="60" height="60"/>
-										</td>
-										<td><input type="text" size="4" name="qty"  value="<?php echo $product_qty;?>"/></td>
-										<?php 
-										if(isset($_POST['update_cart'])){
-											
-											$qty = $_POST['qty'];
-											
-											$update_qty = "update cart set qty='$qty' where p_id='$pro_id'";
-											
-											$run_qty = mysqli_query($con, $update_qty); 
-											
-											$_SESSION['qty']=$qty;
-											
-											$total = $total+($single_price*$qty);
-										}
-										
-										?>
-										<td><?php echo $single_price; ?></td>
-									</tr>
-									
-								<?php } } ?>
-								<tr align="right">
-									<td colspan="5">Total:</td>
-									<td><?php echo $total; ?> TL</td>
-								</tr>
-								
-								<tr align="center">
-									<td colspan="2"><input type="submit" name="update_cart" value="Sepeti Düzenle"/> </td>
-									<td><input type="submit" name="continue" value="Alışverişe Devam Et"/> </td>
-									<td><button><a href ="checkout.php">Checkout</a></button></td>
-								</tr>
-					</table>
-				</form>
-				
 				<?php 
-		
-	function updatecart(){
-		
-		global $con; 
-		
-		$ip = getIp();
-		
-		if(isset($_POST['update_cart'])){
-		
-			foreach($_POST['remove'] as $remove_id){
-			
-			$delete_product = "delete from cart where p_id='$remove_id' AND ip_add='$ip'";
-			
-			$run_delete = mysqli_query($con, $delete_product); 
-			
-			if($run_delete){
-			
-			echo "<script>window.open('cart.php','_self')</script>";
-			
-			}
-			
-			}
-		
-		}
-		if(isset($_POST['continue'])){
-		
-		echo "<script>window.open('index.php','_self')</script>";
-		
-		}
-	
-	}
-	echo @$up_cart = updatecart();
-	
-	?>
+				if(!isset($_SESSION['customer_email'])){
 					
+					include("customer_login.php");
+				}
+				else {
+				
+				include("payment.php");
+				
+				}
+				
+				?>
 				</div>
 			</div>
 		</div>
