@@ -1,59 +1,65 @@
 <!DOCTYPE>
-<?php 
+<?php
 session_start();
 include("functions/functions.php");
-
 ?>
 <html>
 	<head>
-		<title>My Online Shop</title>
-		
-		
-	<link rel="stylesheet" href="styles/style.css" media="all" /> 
+		<title> My online Shop</title>
+		<link rel="stylesheet" href="styles/style.css" media="all" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
-	
 <body>
+    <!-- Main Container starts here-->
+	<div class="container-fluid">
 	
-	<!--Main Container starts here-->
-	<div class="main_wrapper">
 	
-		<!--Header starts here-->
-		<div class="header_wrapper">
-		
-			<a href="../index.php"><img id="logo" src="images/logo.gif" /> </a>
-			<img id="banner" src="images/ad_banner.gif" />
-		</div>
-		<!--Header ends here-->
-		
-		<!--Navigation Bar starts-->
-		<div class="menubar">
-			
-			<ul id="menu">
-				<li><a href="ecommerce/index.php">Home</a></li>
-				<li><a href="../all_products.php">All Products</a></li>
-				<li><a href="customer/my_account.php">My Account</a></li>
-				<li><a href="#">Sign Up</a></li>
-				<li><a href="cart.php">Shopping Cart</a></li>
-				<li><a href="#">Contact Us</a></li>
-			
-			</ul>
-			
-			<div id="form">
-				<form method="get" action="results.php" enctype="multipart/form-data">
-					<input type="text" name="user_query" placeholder="Search a Product"/ > 
-					<input type="submit" name="search" value="Search" />
-				</form>
-			
+		<!-- Header starts here-->
+		<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner">
+			<div class="carousel-item active">
+			  <img class="d-block w-100" src="images/img4.jpg" alt="First slide" style="height:200px; width:1000px;">
 			</div>
 			
+			</div>
 		</div>
-		<!--Navigation Bar ends-->
-	
-		<!--Content wrapper starts-->
-		<div class="content_wrapper">
+		<!-- Header starts here-->
 		
-			<div id="sidebar">
+		
+		<!-- Navagation Bar starts here-->
+		<div>
+			<!-- Search Box ends here-->
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="../index.php">ANASAYFA <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../all_products.php">Tüm Ürünler</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Hesabım</a>
+						</li>
+					</ul>
+					<form method ="get" action="results.php" enctype="multipart/form-data" class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="text" name="user_query" placeholder="Search" aria-label="Search">
+						<!--<input type="submit" name="Search" value="Search" /> -->
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search" value="Search">Search</button>
+					</form>
+				</div>
+			</nav>
 			
+		</div>
+		<!-- Navagation Bar ends here-->
+		
+		
+		
+		<!-- Content Wrapper starts here-->
+		<div class="container-fluid">
+		
+			<!-- sidebar starts here-->
+			<div class="container-fluid" id="sidebar">
 				<div id="sidebar_title">My Account:</div>
 				
 				<ul id="cats">
@@ -80,18 +86,14 @@ include("functions/functions.php");
 				<li><a href="logout.php">Logout</a></li>
 				
 				<ul>
-				
-				</div>
-					
+			</div>
+			<!-- sidebar ends here-->
 		
-			<div id="content_area">
-			
+			<div class="container-fluid">
 			<?php cart(); ?>
-			
-			<div id="shopping_cart"> 
-					
-					<span style="float:right; font-size:17px; padding:5px; line-height:40px;">
-					
+				<!-- shopping cart begins here-->
+				<div style="height:40px;">
+					<span style="float:right">
 					<?php 
 					if(isset($_SESSION['customer_email'])){
 					echo "<b>Welcome:</b>" . $_SESSION['customer_email'] ;
@@ -113,17 +115,13 @@ include("functions/functions.php");
 					
 					
 					?>
-					
-					
-					
 					</span>
-			</div>
-			
-				<div id="products_box">
+				</div>
+				<!-- shopping cart ends here-->
 				
 				
-				
-				<?php 
+				<div class="row">
+					<?php 
 				if(!isset($_GET['my_orders'])){
 					if(!isset($_GET['edit_account'])){
 						if(!isset($_GET['change_pass'])){
@@ -152,28 +150,24 @@ include("functions/functions.php");
 				
 				?>
 				
+					
 				</div>
-			
 			</div>
 		</div>
-		<!--Content wrapper ends-->
+		<!-- Content Wrapper ends here-->
 		
 		
-		
+		<!-- Footer starts here-->
 		<div id="footer">
-		
-		<h2 style="text-align:center; padding-top:30px;">&copy; 2014 by www.OnlineTuting.com</h2>
-		
+			<h2 style="text-align:center; padding-top:30px;">&copy; 2019 by süleyman Koşmat</h2>
 		</div>
-	
-	
-	
-	
-	
-	
-	</div> 
-<!--Main Container ends here-->
+		<!-- Footer ends here-->
 
 
+</div>
+<!-- Main Container ends here-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-</html>
+</html>	

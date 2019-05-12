@@ -39,7 +39,7 @@ include("functions/functions.php");
 							<a class="nav-link" href="all_products.php">Tüm Ürünler</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Hesabım</a>
+							<a class="nav-link" href="customer/my_account.php">Hesabım</a>
 						</li>
 					</ul>
 					<form method ="get" action="results.php" enctype="multipart/form-data" class="form-inline my-2 my-lg-0">
