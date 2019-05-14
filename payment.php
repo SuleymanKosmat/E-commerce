@@ -59,7 +59,7 @@
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" >
 
 <!-- Identify your business so that you can collect the payments. -->
-<input type="hidden" name="business" value="sriniv_1293527277_biz@inbox.com">
+<input type="hidden" name="business" value="businesstest73@shop.com">
 
 <!-- Specify a Buy Now button. -->
 <input type="hidden" name="cmd" value="_xclick">
@@ -76,8 +76,8 @@
 
 <!-- Display the payment button. -->
 <input type="image" name="submit" border="0"
-src="paypal_button.png"
-alt="PayPal - The safer, easier way to pay online">
+src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png"
+alt="Check out with PayPal">
 <img alt="" border="0" width="1" height="1"
 src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
